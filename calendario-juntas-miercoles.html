@@ -595,13 +595,13 @@
   <div class="header-tags">
     <span class="htag orange">reuniones</span>
     <span class="htag blue">2026</span>
-    <span class="htag outline">miércoles</span>
+    <span class="htag outline">lunes</span>
     <span class="htag red">juntas</span>
     <span class="htag white">calendario</span>
   </div>
   <div class="header-meet">
     <span class="meet-pill">● Google Meet</span>
-    <span class="meet-desc">9:30 – 10:30 · Enlace vía creativos@thelifechurch.cl</span>
+    <span class="meet-desc">Lunes · 9:30 – 10:30 · Enlace vía creativos@thelifechurch.cl</span>
   </div>
 </div>
 
@@ -648,16 +648,16 @@ function shuffle(arr) {
   return a;
 }
 
-// Primeras fijas: Sorimar, Jazmín, Sofía
-// Resto aleatorio (sin Ronald)
+// Orden fijo: Sorimar primera, Jazmín segunda, Sofía tercera
+// Resto aleatorio (sin Ronald), Ronald antes de líderes
 const first3 = ['Sorimar', 'Jazmín', 'Sofía'];
-const rest = shuffle(['Kathy', 'Renata', 'Karol']);
-// Ronald antes de líderes
+const rest = shuffle(['Kathy', 'Renata', 'Carol']);
 const devOrder = [...first3, ...rest, 'Ronald', 'Daniel', 'David'];
 
+// Reuniones cada dos lunes desde 29 jun, arrancando con devocional
 const wedEvents = [];
-let d = new Date(2026, 5, 10);
-let toggle = 'info';
+let d = new Date(2026, 5, 29); // lunes 29 junio
+let toggle = 'dev'; // arranca con devocional (Sorimar)
 let devIdx = 0;
 const endDate = new Date(2026, 10, 30);
 
