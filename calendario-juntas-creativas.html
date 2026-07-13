@@ -455,115 +455,6 @@
     border-top: 1px solid #111;
   }
 
-  /* ── ESTRUCTURA TOOLTIP ── */
-  .tooltip-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    animation: fadeOverlay 0.2s ease;
-  }
-
-  @keyframes fadeOverlay {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  .tooltip-overlay.open { display: flex; }
-
-  .tooltip-card {
-    background: rgba(22,22,22,0.92);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 20px;
-    padding: 1.75rem;
-    max-width: 420px;
-    width: 100%;
-    box-shadow:
-      0 24px 80px rgba(0,0,0,0.6),
-      inset 0 1px 0 rgba(255,255,255,0.08);
-    animation: cardPop 0.3s cubic-bezier(0.22,1,0.36,1);
-    position: relative;
-  }
-
-  @keyframes cardPop {
-    from { opacity: 0; transform: scale(0.92) translateY(12px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  .tooltip-close {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.5);
-    font-size: 0.85rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font);
-    transition: background 0.15s, color 0.15s;
-  }
-  .tooltip-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
-
-  .tooltip-label {
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--pill-dev);
-    margin-bottom: 0.75rem;
-  }
-
-  .tooltip-title {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 1.25rem;
-    line-height: 1.2;
-  }
-
-  .tooltip-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .tooltip-step {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-
-  .step-num {
-    flex-shrink: 0;
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: rgba(245,166,35,0.15);
-    border: 1px solid rgba(245,166,35,0.3);
-    color: var(--pill-dev);
-    font-size: 0.65rem;
-    font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .step-text {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.5;
-    padding-top: 0.2rem;
-  }
-
-  .step-text strong { color: #fff; font-weight: 700; }
-
   /* ── RESPONSIVE ── */
   @media (max-width: 500px) {
     .header { padding: 2.5rem 1.25rem 1.5rem; }
@@ -601,7 +492,7 @@
   </div>
   <div class="header-meet">
     <span class="meet-pill">● Google Meet</span>
-    <span class="meet-desc">Lunes · 9:30 – 10:30 · Enlace vía creativos@thelifechurch.cl</span>
+    <span class="meet-desc">9:00 – 10:00 · Enlace vía creativos@thelifechurch.cl</span>
   </div>
 </div>
 
@@ -615,29 +506,6 @@
 
 <footer id="footer-pills"></footer>
 
-<!-- ESTRUCTURA DEVOCIONAL TOOLTIP -->
-<div class="tooltip-overlay" id="devTooltip" onclick="closeTooltipOutside(event)">
-  <div class="tooltip-card">
-    <button class="tooltip-close" onclick="closeTooltip()">✕</button>
-    <div class="tooltip-label">Estructura · Devocional & Oración</div>
-    <div class="tooltip-title">¿Cómo preparar tu miércoles?</div>
-    <div class="tooltip-steps">
-      <div class="tooltip-step">
-        <div class="step-num">1</div>
-        <div class="step-text"><strong>Bienvenida (5–10 min)</strong><br>Espacio informal mientras todos se conectan. Puedes hacer una pregunta sencilla para romper el hielo — algo liviano y divertido.</div>
-      </div>
-      <div class="tooltip-step">
-        <div class="step-num">2</div>
-        <div class="step-text"><strong>Devocional o enseñanza (15–20 min)</strong><br>Puedes enseñar un tema que te haya marcado, compartir un versículo con reflexión práctica, o abrir una conversación donde todos participen. Lo importante es que conecte con la vida real o con nuestro servicio en el equipo.</div>
-      </div>
-      <div class="tooltip-step">
-        <div class="step-num">3</div>
-        <div class="step-text"><strong>Oración (5–10 min)</strong><br>Cierra invitando a compartir peticiones de oración — quien quiera puede participar. También puedes simplemente orar tú de forma general por el equipo. No hay una sola forma correcta.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
 function shuffle(arr) {
   const a = [...arr];
@@ -648,16 +516,12 @@ function shuffle(arr) {
   return a;
 }
 
-// Orden fijo: Sorimar primera, Jazmín segunda, Sofía tercera
-// Resto aleatorio (sin Ronald), Ronald antes de líderes
-const first3 = ['Sorimar', 'Jazmín', 'Sofía'];
-const rest = shuffle(['Kathy', 'Renata', 'Carol']);
-const devOrder = [...first3, ...rest, 'Ronald', 'Daniel', 'David'];
+const volunteers = ['Sorimar','Kathy','Jasmine','Renata','Carol','Ronald'];
+const devOrder = [...volunteers, 'Daniel', 'David'];
 
-// Reuniones cada dos lunes desde 29 jun, arrancando con devocional
 const wedEvents = [];
-let d = new Date(2026, 5, 29); // lunes 29 junio
-let toggle = 'dev'; // arranca con devocional (Sorimar)
+let d = new Date(2026, 5, 29);
+let toggle = 'dev';
 let devIdx = 0;
 const endDate = new Date(2026, 10, 30);
 
@@ -670,7 +534,7 @@ while (d <= endDate) {
 const juntas = [
   { date: new Date(2026, 6, 4),  lugar: 'Oficina de la iglesia', tema: 'Workshop + Desayuno', detalle: 'Fotografía · Diseño · Animación · Video · IA' },
   { date: new Date(2026, 7, 1),  lugar: 'Por definir', tema: 'Junta de Equipo', detalle: 'Lugar y temática por confirmar' },
-  { date: new Date(2026, 8, 5),  lugar: 'Oficina de la iglesia', tema: 'Junta + Workshop Creativo', detalle: 'Workshop Creativo · Lugar y temática por confirmar' },
+  { date: new Date(2026, 8, 5),  lugar: 'Por definir', tema: 'Junta de Equipo', detalle: 'Lugar y temática por confirmar' },
   { date: new Date(2026, 9, 3),  lugar: 'Por definir', tema: 'Junta de Equipo', detalle: 'Lugar y temática por confirmar' },
   { date: new Date(2026, 10, 7), lugar: 'Por definir', tema: 'Junta de Equipo', detalle: 'Lugar y temática por confirmar' },
 ];
@@ -681,11 +545,11 @@ const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto
 function pad(n){ return String(n).padStart(2,'0'); }
 function fmtDT(date,h,m){ return `${date.getFullYear()}${pad(date.getMonth()+1)}${pad(date.getDate())}T${pad(h)}${pad(m)}00`; }
 
-function gcLink(title,date,desc,loc,sh=9,sm=30,eh=10,em=30){
+function gcLink(title,date,desc,loc,sh=9,sm=0,eh=10,em=0){
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${fmtDT(date,sh,sm)}/${fmtDT(date,eh,em)}&details=${encodeURIComponent(desc)}&location=${encodeURIComponent(loc)}`;
 }
 
-function icsBlob(title,date,desc,loc,sh=9,sm=30,eh=10,em=30){
+function icsBlob(title,date,desc,loc,sh=9,sm=0,eh=10,em=0){
   const ics=[
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TLC Creative//ES',
     'BEGIN:VEVENT',
@@ -754,13 +618,13 @@ months.forEach(m => {
       if (ev.tipo === 'dev') {
         const who = devOrder[ev.devIdx % devOrder.length];
         const title = `Devocional Equipo Creativo – ${who}`;
-        const desc = `Devocional & Oración\nResponsable: ${who}\nEnlace: https://meet.google.com/nnk-kgvs-keb`;
-        const gcl = gcLink(title, ev.date, desc, 'https://meet.google.com/bre-fnye-zxv');
+        const desc = `Devocional & Oración\nResponsable: ${who}\nCompartir enlace desde creativos@thelifechurch.cl`;
+        const gcl = gcLink(title, ev.date, desc, 'Google Meet');
         stack.innerHTML = `
-          <button class="p-type dev" onclick="openTooltip()" style="cursor:pointer;font-family:var(--font);border:none;">devocional & oración ↗</button>
+          <span class="p-type dev">devocional & oración</span>
           <span class="p-name">${who}</span>
-          <a class="p-outline" href="https://meet.google.com/nnk-kgvs-keb" target="_blank" style="text-decoration:none;">↗ Entrar al Meet</a>
-          <span class="p-time">9:30 – 10:30</span>
+          <span class="p-outline">Meet · creativos@thelifechurch.cl</span>
+          <span class="p-time">9:00 – 10:00</span>
           <button class="cal-toggle" onclick="toggleCal('${uid}')">＋ guardar</button>
           <div class="cal-options" id="${uid}">
             <a class="cal-opt-link gcal" href="${gcl}" target="_blank">Google Calendar</a>
@@ -768,13 +632,13 @@ months.forEach(m => {
           </div>`;
       } else {
         const title = 'Informaciones Equipo Creativo';
-        const desc = 'Reunión de Informaciones\nResponsables: Daniel & David\nEnlace: https://meet.google.com/bre-fnye-zxv';
-        const gcl = gcLink(title, ev.date, desc, 'https://meet.google.com/nnk-kgvs-keb');
+        const desc = 'Reunión de Informaciones\nResponsables: Daniel & David\nCompartir enlace desde creativos@thelifechurch.cl';
+        const gcl = gcLink(title, ev.date, desc, 'Google Meet');
         stack.innerHTML = `
           <span class="p-type info">informaciones</span>
           <span class="p-name">Daniel & David</span>
-          <a class="p-outline" href="https://meet.google.com/bre-fnye-zxv" target="_blank" style="text-decoration:none;">↗ Entrar al Meet</a>
-          <span class="p-time">9:30 – 10:30</span>
+          <span class="p-outline">Meet · creativos@thelifechurch.cl</span>
+          <span class="p-time">9:00 – 10:00</span>
           <button class="cal-toggle" onclick="toggleCal('${uid}')">＋ guardar</button>
           <div class="cal-options" id="${uid}">
             <a class="cal-opt-link gcal" href="${gcl}" target="_blank">Google Calendar</a>
@@ -864,11 +728,6 @@ allBlocks().forEach(block => {
     block.style.transform = '';
   });
 });
-
-// ── TOOLTIP ──
-function openTooltip()  { document.getElementById('devTooltip').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeTooltip() { document.getElementById('devTooltip').classList.remove('open'); document.body.style.overflow=''; }
-function closeTooltipOutside(e) { if(e.target.id==='devTooltip') closeTooltip(); }
 
 // Footer
 const footerPills = [
